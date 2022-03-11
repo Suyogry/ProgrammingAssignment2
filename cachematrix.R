@@ -3,7 +3,7 @@
 ## 
 makeCacheMatrix <- function(x = matrix()) {
   ##initiate inverse matrix
-  iMatrix <- NULL
+  inOfMatrix <- NULL
   ##define the set function for the matrix
   set <- function(y){
     x<<-y
@@ -11,9 +11,9 @@ makeCacheMatrix <- function(x = matrix()) {
   }##returns matrix through 'get' object
   get<-function() x
   ##sets the inverse matrix
-  setInverse <- function(makeInverse) iMatrix <<- makeInverse
+  setInverse <- function(makeInverse) inOfMatrix <<- makeInverse
   ##returns the inverse matrix
-  getInverse <- function() iMatrix
+  getInverse <- function() inOfMatrix
   list(set=set, 
        get=get,
        setInverse=setInverse,
@@ -24,14 +24,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the Inverse of 'x'
-  iMatrix <- x$getInverse()
-  ##message appears if the data is already present and returns the data
-  if(!is.null(iMatrix)){
-    message("cached data")
-    iMatrix
+  inOfMatrix <- x$getInverse()
+    if(!is.null(inOfMatrix)){
+    message(" showing cached data")
+    inOfMatrix
   }
   d <- x$get() ##gets the matrix object and stores into 'd' object
-  iMatrix <- solve(d, ...) ##inverse the matrix and stores in iMatrix object
-  x$setInverse(iMatrix)
-  iMatrix
+  inOfMatrix <- solve(d, ...) ##inverse the matrix and stores in iMatrix object
+  x$setInverse(inOfMatrix)
+  inOfMatrix
 }
